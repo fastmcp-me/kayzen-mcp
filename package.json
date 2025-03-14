@@ -1,0 +1,48 @@
+{
+  "name": "@feedmob-ai/kayzen-mcp",
+  "version": "1.0.0",
+  "description": "Kayzen Analytics MCP Server for Claude Desktop",
+  "type": "module",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthropic-ai/kayzen-mcp.git"
+  },
+  "keywords": [
+    "kayzen",
+    "analytics",
+    "mcp",
+    "claude",
+    "anthropic",
+    "model-context-protocol"
+  ],
+  "author": "Anthropic",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "axios": "^1.8.3",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/node": "^20.17.24",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
