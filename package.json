@@ -1,6 +1,6 @@
 {
   "name": "@feedmob-ai/kayzen-mcp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Kayzen Analytics MCP Server for Claude Desktop",
   "type": "module",
   "main": "dist/server.js",
