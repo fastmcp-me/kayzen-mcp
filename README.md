@@ -1,76 +1,41 @@
 # Kayzen Analytics MCP Server
 
-This is a Model Context Protocol (MCP) server implementation for interacting with Kayzen Analytics API. It provides tools for accessing and analyzing Kayzen advertising campaign data through a standardized interface.
+A Model Context Protocol (MCP) server implementation for interacting with Kayzen Analytics API. This package enables AI models to access and analyze Kayzen advertising campaign data through a standardized interface.
+
+## Features
+
+* **Automated Authentication**: Built-in token management with automatic refresh mechanism
+* **Report Management**: Easy access to Kayzen analytics reports
+* **Error Handling**: Comprehensive error handling for API interactions
+* **TypeScript Support**: Full TypeScript implementation with type definitions
+* **Environment Based Configuration**: Simple setup using environment variables
 
 ## Installation
 
 ```bash
-# Install from npm
 npm install @feedmob-ai/kayzen-mcp
-
-# Or if you're using yarn
-yarn add @feedmob-ai/kayzen-mcp
 ```
 
-## Features
+## Configuration
 
-- **Authentication Management**: Automatic handling of authentication tokens with refresh mechanism
-- **Report Management**: Tools for listing and retrieving report data
-- **Data Analysis**: Built-in prompt for analyzing report results
-- **Error Handling**: Robust error handling and reporting
-- **TypeScript Support**: Full TypeScript implementation for type safety
+Create a `.env` file with your Kayzen credentials:
 
-
-## Prerequisites
-
-- Node.js (v16 or higher)
-- npm (v7 or higher)
-- Kayzen API credentials
-
-## Setup
-
-1. Install dependencies:
 ```bash
-npm install
-```
-
-2. Create a `.env` file based on `.env.example` and fill in your Kayzen credentials:
-```bash
-cp .env.example .env
-```
-
-3. Configure your environment variables in `.env`:
-```
 KAYZEN_USERNAME=your_username
 KAYZEN_PASSWORD=your_password
 KAYZEN_BASIC_AUTH=your_basic_auth_token
-KAYZEN_BASE_URL=https://api.kayzen.io/v1
+KAYZEN_BASE_URL=https://api.kayzen.io/v1  # Optional, defaults to this value
 ```
 
-## Development
+## Usage
 
-To run the server in development mode with hot-reloading:
+### Basic Setup
 
-```bash
-npm run dev
-```
+```typescript
+import { KayzenMCPServer } from '@feedmob-ai/kayzen-mcp';
 
-## Building
-
-To compile the TypeScript code to JavaScript:
-
-```bash
-npm run build
-```
-
-The compiled code will be available in the `dist` directory.
-
-## Running in Production
-
-To run the compiled server:
-
-```bash
-npm start
+const server = new KayzenMCPServer();
+server.start();
 ```
 
 ## Available Tools
@@ -78,68 +43,128 @@ npm start
 ### 1. `list_reports`
 Lists all available reports from Kayzen Analytics.
 
-- **Parameters**: None
-- **Returns**: JSON object containing list of available reports with their IDs and metadata
+* **Inputs**: None
+* **Returns**: Array of report objects containing:
+  - `id`: Report identifier
+  - `name`: Report name
+  - `type`: Report type
+
+```typescript
+const reports = await server.tools.list_reports();
+```
 
 ### 2. `get_report_results`
 Retrieves results for a specific report.
 
-- **Parameters**:
+* **Inputs**:
   - `report_id` (string, required): ID of the report to fetch
   - `start_date` (string, optional): Start date in YYYY-MM-DD format
   - `end_date` (string, optional): End date in YYYY-MM-DD format
-- **Returns**: JSON object containing report data and metadata
+* **Returns**: Report data and metadata
 
-## Available Prompts
+```typescript
+const results = await server.tools.get_report_results({
+  report_id: 'report_id',
+  start_date: '2024-01-01',  // optional
+  end_date: '2024-01-31'     // optional
+});
+```
 
-### 1. `analyze_report_results`
-Analyzes the results of a specific report and provides insights.
+### 3. `analyze_report_results` (Prompt)
+Analyzes report results and provides insights.
 
-- **Parameters**:
-  - `report_id` (string, required): ID of the report to analyze
-- **Analysis includes**:
+* **Inputs**:
+  - `report_id` (string): ID of the report to analyze
+* **Analysis includes**:
   - Performance metrics
   - Key trends
   - Areas for optimization
   - Unusual patterns or anomalies
 
-## Error Handling
 
-The server implements comprehensive error handling for:
-- Authentication failures
-- Invalid report IDs
-- Network issues
-- API rate limiting
-- Invalid date ranges
+## Setup
+
+### Usage with Claude Desktop
+To use this with Claude Desktop, add the following to your `claude_desktop_config.json`:
+
+### NPX
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@feedmob-ai/kayzen-mcp"
+      ],
+      "env": {
+        "KAYZEN_USERNAME": "username",
+        "KAYZEN_PASSWORD": "pasword",
+        "KAYZEN_BASIC_AUTH": "auth token"
+      }
+    }
+  }
+}
+```
+
+
+## Development
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm (v7 or higher)
+- Kayzen API credentials
+
+### Scripts
+
+```bash
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Start the server
+npm start
+
+# Development mode with hot-reload
+npm run dev
+```
 
 ## Project Structure
 
 ```
 kayzen-mcp/
 ├── src/
-│   ├── server.ts        # Main MCP server implementation
-│   └── kayzen-client.ts # Kayzen API client implementation
-├── dist/                # Compiled JavaScript code
-├── package.json         # Project dependencies and scripts
-└── tsconfig.json       # TypeScript configuration
+│   ├── server.ts        # MCP server implementation
+│   └── kayzen-client.ts # Kayzen API client
+├── dist/               # Compiled JavaScript
+└── package.json       # Project configuration
 ```
 
 ## Dependencies
 
-- `@modelcontextprotocol/sdk`: MCP server implementation
-- `axios`: HTTP client for API requests
-- `dotenv`: Environment variable management
-- `zod`: Runtime type checking and validation
-- `typescript`: Development dependency for type safety
+Main dependencies:
+- `@modelcontextprotocol/sdk`: ^1.7.0
+- `axios`: ^1.8.3
+- `dotenv`: ^16.4.7
+- `zod`: ^3.24.2
 
-## Contributing
+## Error Handling
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+The server handles various error scenarios:
+- Authentication failures
+- Invalid API requests
+- Network issues
+- Token expiration and refresh
+- Invalid parameters
 
 ## License
 
-This project is proprietary and confidential. All rights reserved.
+MIT License
+
+## Author
+
+FeedMob
