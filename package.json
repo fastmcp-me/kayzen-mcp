@@ -27,11 +27,9 @@
   "author": "FeedMob",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts",
-    "prepublishOnly": "npm run build",
-    "prepare": "npm run build"
+    "build": "tsc && shx chmod +x dist/*.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
@@ -42,6 +40,7 @@
   "devDependencies": {
     "@types/axios": "^0.9.36",
     "@types/node": "^20.17.24",
+    "shx": "^0.3.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }

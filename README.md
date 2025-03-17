@@ -6,10 +6,10 @@ This is a Model Context Protocol (MCP) server implementation for interacting wit
 
 ```bash
 # Install from npm
-npm install @anthropic-ai/kayzen-mcp
+npm install @feedmob-ai/kayzen-mcp
 
 # Or if you're using yarn
-yarn add @anthropic-ai/kayzen-mcp
+yarn add @feedmob-ai/kayzen-mcp
 ```
 
 ## Features
