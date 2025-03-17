@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anthropic-ai/kayzen-mcp.git"
+    "url": "git+https://github.com/springwq/kayzen-mcp.git"
   },
   "keywords": [
     "kayzen",
@@ -24,7 +24,7 @@
     "anthropic",
     "model-context-protocol"
   ],
-  "author": "Anthropic",
+  "author": "FeedMob",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
