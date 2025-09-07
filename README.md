@@ -1,3 +1,10 @@
+[![Add to Cursor](https://fastmcp.me/badges/cursor_dark.svg)](https://fastmcp.me/MCP/Details/894/kayzen-analytics)
+[![Add to VS Code](https://fastmcp.me/badges/vscode_dark.svg)](https://fastmcp.me/MCP/Details/894/kayzen-analytics)
+[![Add to Claude](https://fastmcp.me/badges/claude_dark.svg)](https://fastmcp.me/MCP/Details/894/kayzen-analytics)
+[![Add to ChatGPT](https://fastmcp.me/badges/chatgpt_dark.svg)](https://fastmcp.me/MCP/Details/894/kayzen-analytics)
+[![Add to Codex](https://fastmcp.me/badges/codex_dark.svg)](https://fastmcp.me/MCP/Details/894/kayzen-analytics)
+[![Add to Gemini](https://fastmcp.me/badges/gemini_dark.svg)](https://fastmcp.me/MCP/Details/894/kayzen-analytics)
+
 # Kayzen Analytics MCP Server
 
 A Model Context Protocol (MCP) server implementation for interacting with Kayzen Analytics API. This package enables AI models to access and analyze Kayzen advertising campaign data through a standardized interface.
